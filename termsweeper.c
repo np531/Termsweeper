@@ -1,8 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
-#include <time.h>
-#include <unistd.h>
 
 void help(void);
 int parse_choice(int choice);
@@ -43,7 +40,6 @@ int parse_choice(int choice) {
 			printf("Unrecognised command\n\n");
 	}
 
-	sleep(1);
 	return 1;
 }
 

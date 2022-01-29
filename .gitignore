@@ -1,3 +1,6 @@
+#Hidden temp files
+.*
+
 # Prerequisites
 *.d
 
