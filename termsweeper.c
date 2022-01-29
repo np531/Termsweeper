@@ -1,17 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "leaderboard.h"
+
+#define MAXSIZE 8
+
+int **board;
 
 void help(void);
 int parse_choice(int choice);
+void print_board(void);
+
 
 int main(void) {
-	printf("Welcome to Termsweeper, minesweeper but worse\n");
-	printf("Type 'h' for help\n\n");
 	int choice;
+
+	printf("========================================================\n");
+	printf("Welcome to Termsweeper, minesweeper for your terminal!\n");
+	printf("========================================================\n\n");
+	printf("Type 'h' for help\n\n");
 
 	printf("Input: ");
 	choice = getchar();
-	/* while(getchar() != '\n'); // Clears stdin buffer */
 	while (parse_choice(choice)) {
 		printf("Input:");
 		while(getchar() != '\n'); // Clears stdin buffer
@@ -22,7 +31,6 @@ int main(void) {
 }
 
 int parse_choice(int choice) {
-	/* printf("%c", (char)choice); */
 	switch((char)choice) {
 		case 'h':
 			help();
@@ -41,6 +49,22 @@ int parse_choice(int choice) {
 	}
 
 	return 1;
+}
+
+void print_board(void){
+	
+	return;	
+}
+
+int **init_board(){
+	board = (int **)malloc(MAXSIZE*sizeof(int *));
+	for (int i = 0; i < MAXSIZE; i++) {
+		board[i] = (int *)malloc(MAXSIZE*sizeof(int));
+	}
+
+	// TODO assign starting values to each square 
+	// TODO implement free_board function
+
 }
 
 void help(void) {
