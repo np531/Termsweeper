@@ -16,6 +16,7 @@ int **init_board(void);
 void print_board(void);
 void free_board(int **board);
 void place_mines();
+int check_adj_mines(int x, int y);
 
 // 0 means empty hidden, 1 means empty visible, 2 means means mine, 3 means flag
 
@@ -53,6 +54,7 @@ int parse_choice(int choice, int *mines_exist) {
 				place_mines();	
 				*mines_exist = 1;
 			}
+			print_board();
 			break;
 		case 'f':
 			printf("Not yet implemented\n");
@@ -87,10 +89,33 @@ void place_mines(void) {
 
 	// Randomly assigns num_mines mines
 	for (int count = 0; count < num_mines; count++) {
-		board[rand()%MAXSIZE][rand()%MAXSIZE] = 1;
+		board[rand()%MAXSIZE][rand()%MAXSIZE] = 9;
 	}
+
+	// updates the adjacency count of each non-mine cell
+	/* int num_adj = 0; */
+	for (int i = 0; i < MAXSIZE; i++) {
+		for (int j = 0; j < MAXSIZE; j++) {
+			if (board[i][j] != 9) {
+				board[i][j] = check_adj_mines(i,j); 
+			}
+		}	
+	}
+
 }
 
+int check_adj_mines(int x, int y){
+	int count = 0;
+	for (int i = -1; i <= 1; i++) {
+		for (int j = -1; j <= 1; j++) {
+			if (board[i][j] == 9) {
+				count++;	
+			}
+		}
+	}
+
+	return count;
+}
 
 void print_board(void){
 	printf("\n");
